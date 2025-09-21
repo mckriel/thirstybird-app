@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ThirstyBird Design System - Mobile Optimized */
+
+@layer base {
+  :root {
+    /* Design System Colors - HSL Format */
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 0 0% 11%; /* #1C1C1C */
+    
+    --primary: 198 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    
+    --accent: 140 60% 42%; /* #28A745 Success Green */
+    --accent-foreground: 0 0% 100%;
+    
+    --warning: 43 96% 53%; /* #FFC107 Warning Gold */
+    --warning-foreground: 0 0% 11%;
+    
+    --button-black: 0 0% 0%; /* #000000 */
+    --button-black-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    --inactive: 0 0% 93%; /* #EDEDED */
+    --inactive-foreground: 0 0% 45%;
+    
+    --secondary: 0 0% 93%; /* #EDEDED */
+    --secondary-foreground: 0 0% 45%;
+    
+    --muted: 0 0% 93%; /* #EDEDED */
+    --muted-foreground: 0 0% 45%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 11%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 11%;
+    
+    --border: 0 0% 93%;
+    --input: 0 0% 96%;
+    --ring: 198 100% 47%;
+    
+    --radius: 1rem; /* 16px */
+    
+    /* Shadows */
+    --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --shadow-modal: 0 8px 16px rgba(0, 0, 0, 0.1);
+    
+    /* Animations */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground font-normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Mobile-first responsive design */
+  .container {
+    @apply w-full max-w-sm mx-auto px-4;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      @apply max-w-md;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      @apply max-w-lg;
+    }
+  }
+}
+
+@layer components {
+  /* Card Elevation */
+  .card-elevation {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .modal-elevation {
+    box-shadow: var(--shadow-modal);
+  }
+  
+  /* Button Press Animation */
+  .btn-press {
+    transition: transform var(--transition-fast);
+  }
+  
+  .btn-press:active {
+    transform: scale(0.96);
+  }
+  
+  /* Confetti Animation */
+  @keyframes confetti-burst {
+    0% { 
+      transform: scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2) rotate(180deg);
+      opacity: 0.8;
+    }
+    100% { 
+      transform: scale(1) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  .confetti-burst {
+    animation: confetti-burst 0.6s ease-out;
+  }
+  
+  /* Modal Slide Animation */
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-down {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+  
+  .slide-up {
+    animation: slide-up var(--transition-normal) ease-out;
+  }
+  
+  .slide-down {
+    animation: slide-down var(--transition-normal) ease-out;
+  }
+  
+  /* Badge Styles */
+  .badge-discount {
+    @apply bg-warning text-warning-foreground text-xs font-medium px-2 py-1 rounded-full;
+  }
+  
+  .badge-status {
+    @apply text-xs font-medium px-2 py-1 rounded-full;
+  }
+  
+  .badge-status.open {
+    @apply bg-accent text-accent-foreground;
+  }
+  
+  .badge-status.closed {
+    @apply bg-destructive text-destructive-foreground;
+  }
+  
+  /* Typography - Poppins Font Family */
+  .text-heading {
+    @apply font-semibold text-foreground;
+    font-weight: 600;
+  }
+  
+  .text-label {
+    @apply font-medium text-foreground;
+    font-weight: 500;
+  }
+  
+  .text-body {
+    @apply font-normal text-foreground;
+    font-weight: 400;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
