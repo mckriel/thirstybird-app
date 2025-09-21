@@ -1,203 +1,160 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ThirstyBird Design System - Mobile Optimized */
-
-@layer base {
-  :root {
-    /* Design System Colors - HSL Format */
-    --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 0 0% 11%; /* #1C1C1C */
-    
-    --primary: 198 100% 47%;
-    --primary-foreground: 0 0% 100%;
-    
-    --accent: 140 60% 42%; /* #28A745 Success Green */
-    --accent-foreground: 0 0% 100%;
-    
-    --warning: 43 96% 53%; /* #FFC107 Warning Gold */
-    --warning-foreground: 0 0% 11%;
-    
-    --button-black: 0 0% 0%; /* #000000 */
-    --button-black-foreground: 0 0% 100%; /* #FFFFFF */
-    
-    --inactive: 0 0% 93%; /* #EDEDED */
-    --inactive-foreground: 0 0% 45%;
-    
-    --secondary: 0 0% 93%; /* #EDEDED */
-    --secondary-foreground: 0 0% 45%;
-    
-    --muted: 0 0% 93%; /* #EDEDED */
-    --muted-foreground: 0 0% 45%;
-    
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 11%;
-    
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 11%;
-    
-    --border: 0 0% 93%;
-    --input: 0 0% 96%;
-    --ring: 198 100% 47%;
-    
-    --radius: 1rem; /* 16px */
-    
-    /* Shadows */
-    --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.05);
-    --shadow-modal: 0 8px 16px rgba(0, 0, 0, 0.1);
-    
-    /* Animations */
-    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-}
+/* ThirstyBird Design System - Clean & Simple */
 
 @layer base {
   * {
     @apply border-border;
   }
   
-  html {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  }
-
   body {
-    @apply bg-background text-foreground font-normal;
+    @apply bg-white text-gray-900 font-sans;
+    font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
-  /* Mobile-first responsive design */
-  .container {
-    @apply w-full max-w-sm mx-auto px-4;
+
+  h1 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight;
   }
   
-  @media (min-width: 640px) {
-    .container {
-      @apply max-w-md;
-    }
+  h2 {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight;
   }
   
-  @media (min-width: 768px) {
-    .container {
-      @apply max-w-lg;
-    }
+  h3 {
+    @apply text-lg sm:text-xl font-medium tracking-tight;
   }
 }
 
 @layer components {
-  /* Card Elevation */
-  .card-elevation {
-    box-shadow: var(--shadow-card);
+  /* Button Components */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium;
+    @apply transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+    @apply disabled:pointer-events-none disabled:opacity-50 min-h-[44px] px-4 py-2;
   }
   
-  .modal-elevation {
-    box-shadow: var(--shadow-modal);
+  .btn-primary {
+    @apply bg-primary text-primary-foreground shadow hover:bg-primary/90 active:scale-[0.98];
   }
   
-  /* Button Press Animation */
-  .btn-press {
-    transition: transform var(--transition-fast);
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80;
   }
   
-  .btn-press:active {
-    transform: scale(0.96);
+  .btn-outline {
+    @apply border border-border bg-white shadow-sm hover:bg-accent hover:text-accent-foreground;
   }
   
-  /* Confetti Animation */
-  @keyframes confetti-burst {
-    0% { 
-      transform: scale(0) rotate(0deg);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.2) rotate(180deg);
-      opacity: 0.8;
-    }
-    100% { 
-      transform: scale(1) rotate(360deg);
-      opacity: 0;
-    }
+  /* Card Components */
+  .card {
+    @apply bg-card text-card-foreground rounded-2xl border border-border shadow-card;
   }
   
-  .confetti-burst {
-    animation: confetti-burst 0.6s ease-out;
+  .card-header {
+    @apply flex flex-col space-y-1.5 p-4 sm:p-6;
   }
   
-  /* Modal Slide Animation */
-  @keyframes slide-up {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  .card-title {
+    @apply font-semibold leading-none tracking-tight text-lg;
   }
   
-  @keyframes slide-down {
-    from {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(100%);
-      opacity: 0;
-    }
+  .card-description {
+    @apply text-sm text-muted-foreground leading-relaxed;
   }
   
-  .slide-up {
-    animation: slide-up var(--transition-normal) ease-out;
+  .card-content {
+    @apply p-4 sm:p-6 pt-0;
   }
   
-  .slide-down {
-    animation: slide-down var(--transition-normal) ease-out;
+  .card-footer {
+    @apply flex items-center p-4 sm:p-6 pt-0;
+  }
+
+  /* Deal Card Specific */
+  .deal-card {
+    @apply card transition-all duration-300 hover:shadow-hover hover:scale-[1.02] active:scale-[0.98];
+    @apply cursor-pointer overflow-hidden;
   }
   
-  /* Badge Styles */
-  .badge-discount {
-    @apply bg-warning text-warning-foreground text-xs font-medium px-2 py-1 rounded-full;
+  .deal-card-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+    @apply bg-accent/10 text-accent border border-accent/20;
   }
   
-  .badge-status {
-    @apply text-xs font-medium px-2 py-1 rounded-full;
+  .price-original {
+    @apply text-sm text-muted-foreground line-through;
   }
   
-  .badge-status.open {
-    @apply bg-accent text-accent-foreground;
+  .price-deal {
+    @apply text-xl font-bold text-accent;
   }
   
-  .badge-status.closed {
-    @apply bg-destructive text-destructive-foreground;
+  .price-savings {
+    @apply text-sm font-medium text-accent;
   }
-  
-  /* Typography - Poppins Font Family */
-  .text-heading {
-    @apply font-semibold text-foreground;
-    font-weight: 600;
+
+  /* Input Components */
+  .input {
+    @apply flex h-11 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm;
+    @apply file:border-0 file:bg-transparent file:text-sm file:font-medium;
+    @apply placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
   }
-  
-  .text-label {
-    @apply font-medium text-foreground;
-    font-weight: 500;
+
+  /* Layout Components */
+  .container {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
   }
-  
-  .text-body {
-    @apply font-normal text-foreground;
-    font-weight: 400;
+
+  /* Loading States */
+  .skeleton {
+    @apply animate-pulse rounded-lg bg-muted;
+  }
+
+  /* Responsive Grid */
+  .deals-grid {
+    @apply grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  /* Safe area insets for mobile devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .mobile-optimized {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
